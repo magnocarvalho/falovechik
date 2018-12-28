@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -90,6 +90,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
