@@ -43,11 +43,13 @@ import {
   MatRippleModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
+    DashboardComponent,
 
   ],
   imports: [
