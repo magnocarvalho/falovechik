@@ -45,12 +45,14 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AfiliadosComponent } from './afiliados/afiliados.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     DashboardComponent,
+    AfiliadosComponent,
 
   ],
   imports: [
