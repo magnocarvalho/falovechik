@@ -1,0 +1,18 @@
+<div style="position:absolute;top:0;left:0;right:0;bottom:0;">
+  <mat-sidenav-container #sidenav style="height:100%;width:100%;">
+    <mat-sidenav mode="over" #sidenav style="min-width:220px;">
+      <p>aqui vai ser o futuro item do menu</p>
+    </mat-sidenav>
+    <mat-toolbar color="primary" style="min-height:64px;">
+      <div>
+        <mat-icon (click)="sidenav.open()" class="mat-18" color="default">menu</mat-icon>
+      </div>
+      <span>FALOVECHIK ACESSO AFILIADO</span>
+    </mat-toolbar>
+    <div class="inner-sidenav-content">
+      <div style="padding-top:2em;padding-bottom:2em;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-container>
+</div>

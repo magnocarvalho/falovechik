@@ -46,6 +46,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AfiliadosComponent } from './afiliados/afiliados.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { AfiliadosComponent } from './afiliados/afiliados.component';
     AuthComponent,
     DashboardComponent,
     AfiliadosComponent,
+    ToolbarComponent,
 
   ],
   imports: [
