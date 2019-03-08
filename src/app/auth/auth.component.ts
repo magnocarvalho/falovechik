@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,14 +10,29 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  constructor(public auth: AuthService, public route: Router) { }
 
   ngOnInit() {
   }
-  logar($)
-  {
+  form = new FormGroup({
+    email: new FormControl("", Validators.email),
+    senha: new FormControl("", Validators.required),
+  })
+  logar($) {
     $.preventDefault();
-    this.route.navigate(['dashboard']);
+    var obj = {
+      email: this.form.get("email").value,
+      senha: this.form.get("senha").value
+    };
+    this.auth.login(obj).then(
+      () => {
+        console.log("deu bom!!!");
+        this.route.navigate(["dashboard"]);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

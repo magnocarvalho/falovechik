@@ -1,29 +1,30 @@
-<div class="back-login">
-
-  <div class="login">
-    <div class="login-card">
-      <mat-card>
-        <mat-card-header>
-          <div class="logo mat-h1">
-            <h1>FALOVECHIK</h1>
-          </div>
-        </mat-card-header>
-        <mat-card-content>
-          <form>
-            <mat-form-field appearance="outline">
-              <mat-label>Login</mat-label>
-              <input matInput type="mail" placeholder="Placeholder">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Senha</mat-label>
-              <input matInput type="password" placeholder="Placeholder">
-            </mat-form-field>
-          </form>
-        </mat-card-content>
-        <mat-card-actions align="center">
-          <button mat-raised-button color="primary" (click)="logar($event)">Entrar</button>
-        </mat-card-actions>
-      </mat-card>
+<div fxLayout="row" fxLayoutAlign="center stretch" class="back-branco">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="login-card">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <div fxLayout="row" fxLayoutAlign="center start" class="img-logo-login">
+                            <img src="assets/img/logo-lateral.png">
+                        </div>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="form">
+                        <mat-form-field fxLayout="row" appearance="outline">
+                            <mat-label>Login</mat-label>
+                            <input matInput formControlName="email" type="mail" placeholder="Seu Email">
+                        </mat-form-field>
+                        <mat-form-field fxLayout="row" appearance="outline">
+                            <mat-label>Senha</mat-label>
+                            <input matInput formControlName="senha" type="password" placeholder="Sua Senha">
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+                <mat-card-actions align="center">
+                    <button mat-raised-button color="primary" (click)="logar($event)">Entrar</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
     </div>
-  </div>
 </div>
