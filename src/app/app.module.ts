@@ -55,6 +55,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
+import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
     AfiliadosComponent,
     ToolbarComponent,
     NovoUsuarioComponent,
+    PrimeiroAcessoComponent,
 
   ],
   imports: [
@@ -114,7 +117,8 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,11 +5,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserlogoutGuard } from './guard/userlogout.guard';
 import { UserlogadoGuard } from './guard/userlogado.guard';
 import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
+import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.component';
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent, canActivate:[UserlogoutGuard] },
   { path: 'new-user', component: NovoUsuarioComponent, canActivate:[UserlogoutGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate:[UserlogadoGuard]},
+  { path: 'primeiro-acesso', component: PrimeiroAcessoComponent, canActivate:[UserlogadoGuard] },
   { path: '**', redirectTo: '/auth' },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
 

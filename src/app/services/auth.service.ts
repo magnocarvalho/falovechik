@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from "firebase/app";
 import { Observable } from "rxjs";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: "root"
@@ -11,18 +12,24 @@ export class AuthService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
   private email;
-  constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
+  constructor(private _firebaseAuth: AngularFireAuth, private router: Router, private spinner: NgxSpinnerService) {
     this.user = _firebaseAuth.authState;
+    this.spinner.show();
     this.user.subscribe(user => {
       if (user) {
         this.userDetails = user;
         console.log(this.userDetails);
+        this.router.navigate(['dashboard']);
+        this.spinner.hide();
         this.email = this.userDetails.email;
       } else {
+        this.router.navigate(['auth']);
         console.log("nenhum usuario logado");
+        this.spinner.hide();
         this.userDetails = null;
       }
     });
+
   }
   login(obj) {
     return this._firebaseAuth.auth
