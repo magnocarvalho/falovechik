@@ -12,7 +12,7 @@ export class AuthService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
   private email;
-  constructor(private _firebaseAuth: AngularFireAuth, private router: Router, private spinner: NgxSpinnerService) {
+  constructor(private _firebaseAuth: AngularFireAuth, private router: Router, public spinner: NgxSpinnerService) {
     this.user = _firebaseAuth.authState;
     this.spinner.show();
     this.user.subscribe(user => {
@@ -35,8 +35,8 @@ export class AuthService {
     return this._firebaseAuth.auth
       .signInWithEmailAndPassword(obj.email, obj.senha)
       .then(() => {
-        console.log("login com sucesso");
-        // console.log(this.userDetails);
+        //console.log("login com sucesso");
+        // //console.log(this.userDetails);
       });
   }
   createUser(user) {
@@ -46,10 +46,10 @@ export class AuthService {
         var user = this._firebaseAuth.auth.currentUser;
         user
           .sendEmailVerification()
-          .then(() => console.log("please verify your email"))
-          .catch(err => console.log(err));
+          .then(() => console.error("please verify your email"))
+          .catch(err => console.error(err));
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }
   isLoggedIn() {
     if (this.userDetails == null) {
@@ -63,7 +63,7 @@ export class AuthService {
       this.userDetails = null;
       this.router.navigate(["/login"])
     }, err => {
-      console.error(err);
+      //console.error(err);
     });
   }
   emails() {

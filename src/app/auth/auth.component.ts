@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+// import { NgxSpinnerService } from 'ngx-spinner';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-auth',
@@ -10,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public auth: AuthService, public route: Router) { }
+  constructor(public auth: AuthService, public route: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -26,11 +28,17 @@ export class AuthComponent implements OnInit {
     };
     this.auth.login(obj).then(
       () => {
-        console.log("deu bom!!!");
+        //console.log("deu bom!!!");
         this.route.navigate(["dashboard"]);
+        // this.spinner.hide();
       },
       err => {
-        console.log(err);
+        //console.log(err);
+        // this.spinner.hide();
+        var erro = err;
+        this.snackBar.open(erro.message, "erro", {
+          duration: 5000,
+        });
       }
     );
   }

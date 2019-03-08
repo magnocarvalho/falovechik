@@ -26,11 +26,11 @@ export class NovoUsuarioComponent implements OnInit {
     };
     this.auth.createUser(obj).then(
       () => {
-        console.log("deu bom!!!");
+        //console.log("deu bom!!!");
         this.route.navigate(["dashboard"]);
       },
       err => {
-        console.log(err);
+        //console.log(err);
       }
     );
   }

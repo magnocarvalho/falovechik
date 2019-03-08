@@ -1,3 +1,12 @@
-<p>
-  primeiro-acesso works!
-</p>
+<div class="formulario">
+    <form [formGroup]="form">
+        <mat-form-field fxLayout="row" appearance="outline">
+            <mat-label>Login</mat-label>
+            <input matInput formControlName="email" type="mail" placeholder="Seu Email">
+        </mat-form-field>
+        <mat-form-field fxLayout="row" appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="senha" type="password" placeholder="Sua Senha">
+        </mat-form-field>
+    </form>
+</div>

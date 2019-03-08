@@ -57,6 +57,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
