@@ -1,3 +1,41 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<app-toolbar></app-toolbar>
-<router-outlet></router-outlet>
+<mat-drawer-container>
+    <mat-drawer #sidenav mode="over" class="drawer">
+      <div class="menu">
+        <mat-list>
+          <mat-list-item>
+            <mat-icon mat-list-icon>folder</mat-icon>Item 1
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><a (click)="checkRota()">Item qualquer</a></mat-list-item>
+        </mat-list>
+      </div>
+    </mat-drawer>
+    <div class="sidenav-content">
+      <div class="content">
+        <mat-toolbar color="primary" id="toolbar">
+          <button mat-icon-button class="menu" (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span class="spacer"></span>
+          <button mat-icon-button class="exit" (click)="sairLogin()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+          <!-- <button mat-raised-button class="" *ngIf="!flagLogin" routerLink="auth">
+            <mat-icon>person_add</mat-icon>
+            Cadastre-se
+          </button> -->
+        </mat-toolbar>
+        <!-- <div fxLayout="row" fxLayoutAlign="space-around start" class="back-branco">
+          <span>
+            <app-login></app-login>
+          </span>
+          <span>
+            <app-create-user></app-create-user>
+          </span>
+        </div> -->
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
+    </div>
+  </mat-drawer-container>

@@ -47,6 +47,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AfiliadosComponent } from './afiliados/afiliados.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 
 @NgModule({
   declarations: [
@@ -55,11 +63,22 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     DashboardComponent,
     AfiliadosComponent,
     ToolbarComponent,
+    NovoUsuarioComponent,
 
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgbModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
     CdkTableModule,
     MatAutocompleteModule,
     MatBadgeModule,
@@ -74,7 +93,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
-    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
     MatInputModule,
@@ -96,9 +114,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
-    FlexLayoutModule,
-    BrowserAnimationsModule
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

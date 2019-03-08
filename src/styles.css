@@ -2,10 +2,13 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /* material designer import */
 
-p , h1, h2, h3, h4, div, span{
-    font-family: Roboto;
-}
-body
-{
-    background: #4c92e2;
-}
+
+html, body { height: 100vh; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.back-branco, .content { min-height: 100vh; overflow: hidden;}
+.content { max-height: calc(100vh - 64px);}
+@media (max-width: 599px){
+    .content { max-height: calc(100vh - 56px);}
+} 
+
+   
