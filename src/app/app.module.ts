@@ -59,6 +59,7 @@ import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.compo
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import {NgxMaskModule} from 'ngx-mask';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -77,8 +78,9 @@ import {NgxMaskModule} from 'ngx-mask';
     NgHttpLoaderModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
-    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase, 'falovechik'),
+    AngularFireDatabaseModule, 
+    AngularFirestoreModule,
     AngularFireAuthModule,
     NgbModule,
     BrowserModule,

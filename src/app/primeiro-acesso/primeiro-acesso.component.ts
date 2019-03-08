@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { Usuario } from '../models/usuario.model';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-primeiro-acesso',
@@ -9,15 +11,19 @@ import { AuthService } from '../services/auth.service';
 })
 export class PrimeiroAcessoComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
-
-  ngOnInit() {
-  }
+  usuarios: Usuario[];
   form = new FormGroup({
     nome: new FormControl("", Validators.required),
     sobrenome: new FormControl("", Validators.required),
     cpf: new FormControl("", Validators.required),
   });
+
+  constructor(private auth: AuthService, public api: ApiService) { }
+
+  ngOnInit() {
+   
+  }
+
   salvarRole() {
     console.log(this.form.value);
     let user = this.auth.userDetails;;
@@ -29,8 +35,18 @@ export class PrimeiroAcessoComponent implements OnInit {
       cpf: this.form.get('cpf').value,
       uid: user.uid,
     };
+    this.api.getUsuarios().subscribe(data =>
+      {
+        this.usuarios = data.map(e => {
+          return {
+            id: e.payload.doc.id,
+            ...e.payload.doc.data()
+          } as Usuario;
+        });
+      });
 
     console.log(obj);
+    console.log(this.usuarios);
 
   }
 
