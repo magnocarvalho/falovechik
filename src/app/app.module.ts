@@ -58,6 +58,7 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

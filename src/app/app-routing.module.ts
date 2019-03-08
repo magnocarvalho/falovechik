@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent, canActivate:[UserlogoutGuard] },
   { path: 'new-user', component: NovoUsuarioComponent, canActivate:[UserlogoutGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate:[UserlogadoGuard]},
-  { path: 'primeiro-acesso', component: PrimeiroAcessoComponent, canActivate:[UserlogadoGuard] },
+  // { path: 'primeiro-acesso', component: PrimeiroAcessoComponent, canActivate:[UserlogadoGuard] },
+  { path: 'primeiro-acesso', component: PrimeiroAcessoComponent,},
+
   { path: '**', redirectTo: '/auth' },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
 

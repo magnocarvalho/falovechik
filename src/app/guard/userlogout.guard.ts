@@ -14,7 +14,7 @@ export class UserlogoutGuard implements CanActivate {
     if (!this.auth.isLoggedIn()) {
       return true;
     } else {
-      this.rota.navigate(['dashboard']);
+      // this.rota.navigate(['dashboard']);
       return false;
     }
 

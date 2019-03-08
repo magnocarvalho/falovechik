@@ -14,7 +14,7 @@ export class UserlogadoGuard implements CanActivate {
     if (this.auth.isLoggedIn()) {
       return true;
     } else {
-      this.rota.navigate(['auth'])
+      // this.rota.navigate(['auth'])
       return false;
     }
 

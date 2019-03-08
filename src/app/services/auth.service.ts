@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AuthService {
   private user: Observable<firebase.User>;
-  private userDetails: firebase.User = null;
+  public userDetails: firebase.User = null;
   private email;
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router, public spinner: NgxSpinnerService) {
     this.user = _firebaseAuth.authState;
@@ -19,11 +19,11 @@ export class AuthService {
       if (user) {
         this.userDetails = user;
         console.log(this.userDetails);
-        this.router.navigate(['dashboard']);
+        // this.router.navigate(['dashboard']);
         this.spinner.hide();
         this.email = this.userDetails.email;
       } else {
-        this.router.navigate(['auth']);
+        // this.router.navigate(['auth']);
         console.log("nenhum usuario logado");
         this.spinner.hide();
         this.userDetails = null;
