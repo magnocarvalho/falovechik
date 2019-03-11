@@ -29,6 +29,10 @@ body {
     }
 }
 
+.login-card {
+    padding: 10px;
+}
+
 .img-logo-login {
     display: block;
     max-width: 400px;
@@ -38,6 +42,9 @@ body {
 }
 
 .img-logo-login img {
-    max-width: 50vw;
+    max-width: 500px;
     margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding: 20px;
 }

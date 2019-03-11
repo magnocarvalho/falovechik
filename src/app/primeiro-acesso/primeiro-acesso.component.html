@@ -4,7 +4,7 @@
             <mat-card-header>
                 <mat-card-title>Insira sua informaçoes para concluir seu acesso</mat-card-title>
             </mat-card-header>
-            <form [formGroup]="form">
+            <form [formGroup]="form" fxLayout="column">
                 <mat-form-field fxLayout="row" appearance="outline">
                     <mat-label>Nome</mat-label>
                     <input matInput formControlName="nome" type="text" placeholder="Seu Nome">
@@ -16,6 +16,15 @@
                 <mat-form-field fxLayout="row" appearance="outline">
                     <mat-label>CPF</mat-label>
                     <input matInput formControlName="cpf" type="text" mask="000.000.000-00" placeholder="Seu CPF">
+                </mat-form-field>
+                <mat-form-field fxLayout="row" appearance="outline">
+                    <mat-label>FILIADO</mat-label>
+                    <input type="text" placeholder="Selecione afiliado" aria-label="Assignee" matInput formControlName="filiados" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option.nome}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
             </form>
             <mat-card-actions>

@@ -10,10 +10,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class AppComponent {
   title = 'falovechik';
-  constructor(public auth: AuthService, public fireAuth: AngularFireAuth, public spinner: NgxSpinnerService) { }
+
+  constructor(public auth: AuthService, public fireAuth: AngularFireAuth, public spinner: NgxSpinnerService) { this.spinner.show();  }
   ngOnInit() {
     /** spinner starts on init */  
-    this.fireAuth.authState
+    
+  }
+  ngAfterViewInit(): void {
+    this.spinner.hide();
   }
   sairLogin() {
     this.auth.logout();

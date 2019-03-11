@@ -19,11 +19,11 @@ export class AuthService {
       if (user) {
         this.userDetails = user;
         console.log(this.userDetails);
-        // this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard']);
         this.spinner.hide();
         this.email = this.userDetails.email;
       } else {
-        // this.router.navigate(['auth']);
+        this.router.navigate(['auth']);
         console.log("nenhum usuario logado");
         this.spinner.hide();
         this.userDetails = null;
@@ -57,6 +57,9 @@ export class AuthService {
     } else {
       return true;
     }
+  }
+  isAuthenticated(): boolean {
+    return this.user !== null;
   }
   logout() {
     this._firebaseAuth.auth.signOut().then(res => {

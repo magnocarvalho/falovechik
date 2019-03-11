@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Usuario } from '../models/usuario.model';
 import { ApiService } from '../services/api.service';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-primeiro-acesso',
@@ -11,22 +13,43 @@ import { ApiService } from '../services/api.service';
 })
 export class PrimeiroAcessoComponent implements OnInit {
 
-  usuarios: Usuario[];
+  usuarios: Usuario;
+  options: Usuario[];
+  filteredOptions: Observable<Usuario[]>;
   form = new FormGroup({
     nome: new FormControl("", Validators.required),
     sobrenome: new FormControl("", Validators.required),
     cpf: new FormControl("", Validators.required),
+    filiados: new FormControl()
   });
 
   constructor(private auth: AuthService, public api: ApiService) { }
 
   ngOnInit() {
-   
+    this.api.getUsuarios().subscribe(r => {
+      this.options = r;
+      this.filteredOptions = this.form.get('filiados').valueChanges
+      .pipe(
+        startWith<string | Usuario>(''),
+        map(value => typeof value === 'string' ? value : value.nome),
+        map(nome => nome ? this._filter(nome) : this.options.slice())
+      );
+    });
+    
+  }
+  displayFn(user?: Usuario): string | undefined {
+    return user ? user.nome : undefined;
+  }
+
+  private _filter(nome: string): Usuario[] {
+    const filterValue = nome.toLowerCase();
+
+    return this.options.filter(option => option.nome.toLowerCase().indexOf(filterValue) === 0);
   }
 
   salvarRole() {
-    console.log(this.form.value);
-    let user = this.auth.userDetails;;
+    // console.log(this.form.value);
+    let user = this.auth.userDetails;
     debugger;
     let obj = {
       email: user.email,
@@ -35,18 +58,13 @@ export class PrimeiroAcessoComponent implements OnInit {
       cpf: this.form.get('cpf').value,
       uid: user.uid,
     };
-    this.api.getUsuarios().subscribe(data =>
-      {
-        this.usuarios = data.map(e => {
-          return {
-            id: e.payload.doc.id,
-            ...e.payload.doc.data()
-          } as Usuario;
-        });
-      });
+
 
     console.log(obj);
-    console.log(this.usuarios);
+    this.api.createUsuario(obj).subscribe(res => {
+      debugger;
+      alert('salvo com sucesso');
+    })
 
   }
 

@@ -6,7 +6,7 @@
     <mat-drawer #sidenav mode="over" class="drawer">
         <div class="menu">
             <mat-list>
-                <mat-list-item>
+                <mat-list-item routerLink="dashboard">
                     <mat-icon mat-list-icon>folder</mat-icon>Item 1
                 </mat-list-item>
                 <mat-divider></mat-divider>
@@ -39,7 +39,7 @@
             <app-create-user></app-create-user>
           </span>
         </div> -->
-            <ng-http-loader></ng-http-loader>
+            <!-- <ng-http-loader></ng-http-loader> -->
             <router-outlet #outlet="outlet"></router-outlet>
         </div>
     </div>

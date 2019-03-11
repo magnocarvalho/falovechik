@@ -11,7 +11,8 @@ export const environment = {
     projectId: "faloveckik",
     storageBucket: "faloveckik.appspot.com",
     messagingSenderId: "676275858263"
-  }
+  }, 
+  url: 'http://localhost:1337/api'
 };
 
 /*
