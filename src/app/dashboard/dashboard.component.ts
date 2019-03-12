@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor( public spinner: NgxSpinnerService) { }
+  constructor( public spinner: NgxSpinnerService, public auth: AngularFireAuth) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -18,6 +19,8 @@ export class DashboardComponent implements OnInit {
     //Add 'implements AfterViewChecked' to the class.
     this.spinner.hide();
   }
+  nome = this.auth.auth.currentUser.email;
+
   
 
 }

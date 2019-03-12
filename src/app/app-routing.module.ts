@@ -8,8 +8,8 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.component';
 
 const routes: Routes = [
-  { path: 'auth', component: AuthComponent, canActivate:[UserlogoutGuard] },
-  { path: 'new-user', component: NovoUsuarioComponent, canActivate:[UserlogoutGuard] },
+  { path: 'auth', component: AuthComponent },
+  { path: 'new-user', component: NovoUsuarioComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate:[UserlogadoGuard]},
   // { path: 'primeiro-acesso', component: PrimeiroAcessoComponent, canActivate:[UserlogadoGuard] },
   { path: 'primeiro-acesso', component: PrimeiroAcessoComponent,},
