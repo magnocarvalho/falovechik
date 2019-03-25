@@ -1,14 +1,12 @@
 <div class="body">
     <div class="dashboard">
-        <div class="header" fxLayout="column" fxLayoutAlign="space-between center">
-            <div>
-                <figure *ngIf="foto">
-                    <img class="perfil" src="assets/img/profile.png" />
-                    <!-- <button mat-fab (click)="fazerLoginFace()">
-                      <mat-icon class="mat-18">facebook</mat-icon>
-                  </button> -->
+        <div class="header" fxLayout="column" fxLayoutAlign="center center">
+            <div *ngIf="foto">
+                <figure *ngIf="(downloadURL | async); let url">
+                    <img class="perfil" [src]="url || 'assets/img/profile.png'" />
                 </figure>
             </div>
+
             <div>
                 <h2 class="nome">{{ nome }}</h2>
             </div>

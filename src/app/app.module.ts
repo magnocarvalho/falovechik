@@ -53,6 +53,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.component';
@@ -79,8 +80,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'falovechik'),
-    AngularFireDatabaseModule, 
+    AngularFireDatabaseModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     AngularFireAuthModule,
     NgbModule,
     BrowserModule,

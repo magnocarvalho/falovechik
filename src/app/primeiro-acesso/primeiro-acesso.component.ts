@@ -13,6 +13,10 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class PrimeiroAcessoComponent implements OnInit {
 
+  public nome = this.auth.userDetails.email;
+  public foto = true;
+  public downloadURL;
+  public imgTemporaria;
   usuarios: Usuario;
   options: Usuario[];
   filteredOptions: Observable<Usuario[]>;
@@ -35,7 +39,7 @@ export class PrimeiroAcessoComponent implements OnInit {
         map(nome => nome ? this._filter(nome) : this.options.slice())
       );
     });
-    
+
   }
   displayFn(user?: Usuario): string | undefined {
     return user ? user.nome : undefined;
@@ -46,6 +50,7 @@ export class PrimeiroAcessoComponent implements OnInit {
 
     return this.options.filter(option => option.nome.toLowerCase().indexOf(filterValue) === 0);
   }
+
 
   salvarRole() {
     // console.log(this.form.value);
@@ -66,6 +71,22 @@ export class PrimeiroAcessoComponent implements OnInit {
       alert('salvo com sucesso');
     })
 
+  }
+  upload(event) {
+    debugger;
+    this.readThis(event.target);
+    // this.imgTemporaria = event.target.files[0];
+    //   let storageRef = this.firebase.ref('/upload/' + this.user.userDetails.uid );
+    //  this.firebase.upload(storageRef,  )
+  }
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.imgTemporaria = myReader.result;
+    }
+    myReader.readAsDataURL(file);
   }
 
 }
