@@ -13,7 +13,7 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class PrimeiroAcessoComponent implements OnInit {
 
-  public nome = this.auth.userDetails.email;
+  // public nome = this.auth.userDetails.email;
   public foto = true;
   public downloadURL;
   public imgTemporaria;
@@ -30,16 +30,15 @@ export class PrimeiroAcessoComponent implements OnInit {
   constructor(private auth: AuthService, public api: ApiService) { }
 
   ngOnInit() {
-    this.api.getUsuarios().subscribe(r => {
-      this.options = r;
-      this.filteredOptions = this.form.get('filiados').valueChanges
-      .pipe(
-        startWith<string | Usuario>(''),
-        map(value => typeof value === 'string' ? value : value.nome),
-        map(nome => nome ? this._filter(nome) : this.options.slice())
-      );
-    });
-
+    // this.api.getUsuarios().subscribe(r => {
+    //   this.options = r;
+    //   this.filteredOptions = this.form.get('filiados').valueChanges
+    //   .pipe(
+    //     startWith<string | Usuario>(''),
+    //     map(value => typeof value === 'string' ? value : value.nome),
+    //     map(nome => nome ? this._filter(nome) : this.options.slice())
+    //   );
+    // });
   }
   displayFn(user?: Usuario): string | undefined {
     return user ? user.nome : undefined;

@@ -4,8 +4,8 @@
             <mat-card-header>
                 <mat-card-title>Insira sua informaçoes para concluir seu acesso</mat-card-title>
             </mat-card-header>
-            <form [formGroup]="form" fxLayout="column">
-                <div *ngIf="!foto">
+            <form [formGroup]="form" fxLayout="column" fxLayoutAlign="space-around start">
+                <div>
                     <img class="perfil" *ngIf="!imgTemporaria" src='assets/img/profile.png' />
                     <img class="perfil" [src]="imgTemporaria" *ngIf="imgTemporaria" />
                     <input type="file" (change)="upload($event)" accept=".png,.jpg">
