@@ -12,6 +12,7 @@ export class AuthService {
   private user: Observable<firebase.User>;
   public userDetails: firebase.User = null;
   private email;
+  // private provider = new firebase.auth.FacebookAuthProvider();
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router, public spinner: NgxSpinnerService) {
     this.user = _firebaseAuth.authState;
     this.spinner.show();
@@ -71,5 +72,25 @@ export class AuthService {
   }
   emails() {
     return this.email || 'Email invalido';
+  }
+  // loginFacebook() {
+  //   var provider = new firebase.auth.FacebookAuthProvider();
+  //   provider.addScope('user_birthday');
+  //   return this._firebaseAuth.auth.signInWithPopup(provider).then(function (result) {
+  //     // This gives you a Facebook Access Token.
+  //     var token = result.credential;
+  //     // The signed-in user info.
+  //     var user = result.user;
+  //     console.log(user);
+  //     this.user = result.user;
+  //   });
+  // }
+  uploadFotoPerfil(obj)
+  {
+    return this._firebaseAuth.auth.currentUser.updateProfile({displayName: obj.nome, photoURL: obj.foto}).then(res => {
+      console.log('foto atualizada');
+    }).catch(() => {
+      console.log(obj);
+    })
   }
 }
