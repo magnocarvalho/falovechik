@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -10,11 +11,14 @@ import { Usuario } from '../models/usuario.model';
 })
 
 export class ApiService {
-  
+
   // Define API
   apiURL = environment.url;
+  tokensecreto;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public auth: AuthService) {
+    this.tokensecreto = this.auth.isLoggedIn() ? this.auth.userDetails.getIdToken() : 'token';
+   }
 
   /*========================================
     CRUD Methods for consuming RESTful API
@@ -23,9 +27,9 @@ export class ApiService {
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json', 'x-access-token' : 'tokensecredo'
+      'Content-Type': 'application/json', 'x-access-token' : this.tokensecreto
     })
-  }  
+  }
 
   // HttpClient API get() method => Fetch Usuarios list
   getUsuarios(): Observable<Usuario[]> {
@@ -43,7 +47,7 @@ export class ApiService {
       retry(1),
       catchError(this.handleError)
     )
-  }  
+  }
 
   // HttpClient API post() method => Create Usuario
   createUsuario(Usuario): Observable<Usuario> {
@@ -52,7 +56,7 @@ export class ApiService {
       retry(1),
       catchError(this.handleError)
     )
-  }  
+  }
 
   // HttpClient API put() method => Update Usuario
   updateUsuario(id, Usuario): Observable<Usuario> {
@@ -72,7 +76,7 @@ export class ApiService {
     )
   }
 
-  // Error handling 
+  // Error handling
   handleError(error) {
      let errorMessage = '';
      if(error.error instanceof ErrorEvent) {

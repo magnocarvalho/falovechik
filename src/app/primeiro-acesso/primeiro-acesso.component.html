@@ -22,7 +22,7 @@
                     <mat-label>CPF</mat-label>
                     <input matInput formControlName="cpf" type="text" mask="000.000.000-00" placeholder="Seu CPF">
                 </mat-form-field>
-                <mat-form-field fxLayout="row" appearance="outline">
+                <!-- <mat-form-field fxLayout="row" appearance="outline">
                     <mat-label>FILIADO</mat-label>
                     <input type="text" placeholder="Selecione afiliado" aria-label="Assignee" matInput formControlName="filiados" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -30,7 +30,7 @@
                             {{option.nome}}
                         </mat-option>
                     </mat-autocomplete>
-                </mat-form-field>
+                </mat-form-field> -->
             </form>
             <mat-card-actions>
                 <button mat-raised-button color="primary" (click)="salvarRole()">Salvar</button>

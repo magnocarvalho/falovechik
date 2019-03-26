@@ -52,9 +52,10 @@ export class PrimeiroAcessoComponent implements OnInit {
 
 
   salvarRole() {
+    debugger;
     // console.log(this.form.value);
     let user = this.auth.userDetails;
-    debugger;
+
     let obj = {
       email: user.email,
       nome: this.form.get('nome').value,
