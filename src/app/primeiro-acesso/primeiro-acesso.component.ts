@@ -5,6 +5,7 @@ import { Usuario } from '../models/usuario.model';
 import { ApiService } from '../services/api.service';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { Select2OptionData } from 'ng2-select2';
 
 @Component({
   selector: 'app-primeiro-acesso',
@@ -27,6 +28,9 @@ export class PrimeiroAcessoComponent implements OnInit {
     filiados: new FormControl()
   });
 
+  public exampleData: Array<Select2OptionData>;
+  // public startValue: Observable<string>;
+
   constructor(private auth: AuthService, public api: ApiService) { }
 
   ngOnInit() {
@@ -39,6 +43,9 @@ export class PrimeiroAcessoComponent implements OnInit {
     //     map(nome => nome ? this._filter(nome) : this.options.slice())
     //   );
     // });
+     this.api.getUsuarios().subscribe(res => {
+      this.exampleData = res;
+    });
   }
   displayFn(user?: Usuario): string | undefined {
     return user ? user.nome : undefined;
@@ -52,9 +59,17 @@ export class PrimeiroAcessoComponent implements OnInit {
 
 
   salvarRole() {
-    debugger;
+    // debugger;
     // console.log(this.form.value);
     let user = this.auth.userDetails;
+    this.auth.spinner.show();
+    if(!this.form.valid)
+    {
+      this.form.markAsDirty();
+      this.auth.spinner.hide();
+      console.error(this.form.errors);
+      return;
+    }
 
     let obj = {
       email: user.email,
@@ -65,10 +80,13 @@ export class PrimeiroAcessoComponent implements OnInit {
     };
 
 
-    console.log(obj);
+    // console.log(obj);
     this.api.createUsuario(obj).subscribe(res => {
-      debugger;
-      alert('salvo com sucesso');
+      // alert('salvo com sucesso');
+      this.auth.spinner.hide();
+    }, err => {
+      console.error(err);
+      this.auth.spinner.hide();
     })
 
   }

@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario.model';
+import { Select2OptionData } from 'ng2-select2';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class ApiService {
   };
 
   constructor(private http: HttpClient, public auth: AuthService) {
-    this.tokensecreto = this.auth.isLoggedIn() ? this.auth.userDetails.getIdToken() : 'token';
+    this.tokensecreto = this.auth.isLoggedIn() ? this.auth.userDetails.getIdToken() : 'tokenfraco';
     this.httpOptions.headers.append('x-access-token', this.tokensecreto); 
    }
    
@@ -35,8 +36,8 @@ export class ApiService {
  
 
   // HttpClient API get() method => Fetch Usuarios list
-  getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiURL + '/usuarios')
+  getUsuarios(): Observable<Array<Select2OptionData>> {
+    return this.http.get<Array<Select2OptionData>>(this.apiURL + '/usuarios')
     .pipe(
       retry(1),
       catchError(this.handleError)

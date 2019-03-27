@@ -61,6 +61,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import {NgxMaskModule} from 'ngx-mask';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { Select2Module } from 'ng2-select2';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     MatTooltipModule,
     MatTreeModule,
     NgxSpinnerModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    Select2Module
   ],
   providers: [],
   bootstrap: [AppComponent]
