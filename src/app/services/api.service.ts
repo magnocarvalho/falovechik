@@ -15,21 +15,24 @@ export class ApiService {
   // Define API
   apiURL = environment.url;
   tokensecreto;
+  httpOptions= {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   constructor(private http: HttpClient, public auth: AuthService) {
     this.tokensecreto = this.auth.isLoggedIn() ? this.auth.userDetails.getIdToken() : 'token';
+    this.httpOptions.headers.append('x-access-token', this.tokensecreto); 
    }
+   
 
   /*========================================
     CRUD Methods for consuming RESTful API
   =========================================*/
 
   // Http Options
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json', 'x-access-token' : this.tokensecreto
-    })
-  }
+ 
 
   // HttpClient API get() method => Fetch Usuarios list
   getUsuarios(): Observable<Usuario[]> {
