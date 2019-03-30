@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Usuario } from '../models/usuario.model';
 import { ApiService } from '../services/api.service';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { Select2OptionData } from 'ng2-select2';
+declare var $: any;
+
+
+export function removeSpaces(control: AbstractControl) {
+  if (control && control.value && !control.value.replace(/\s/g, '').length) {
+    control.setValue('');
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-primeiro-acesso',
@@ -25,7 +34,8 @@ export class PrimeiroAcessoComponent implements OnInit {
     nome: new FormControl("", Validators.required),
     sobrenome: new FormControl("", Validators.required),
     cpf: new FormControl("", Validators.required),
-    filiados: new FormControl()
+    filiados: new FormControl(),
+    username: new FormControl('', [Validators.required, removeSpaces]),
   });
 
   public exampleData: Array<Select2OptionData>;
@@ -34,17 +44,9 @@ export class PrimeiroAcessoComponent implements OnInit {
   constructor(private auth: AuthService, public api: ApiService) { }
 
   ngOnInit() {
-    // this.api.getUsuarios().subscribe(r => {
-    //   this.options = r;
-    //   this.filteredOptions = this.form.get('filiados').valueChanges
-    //   .pipe(
-    //     startWith<string | Usuario>(''),
-    //     map(value => typeof value === 'string' ? value : value.nome),
-    //     map(nome => nome ? this._filter(nome) : this.options.slice())
-    //   );
-    // });
-     this.api.getUsuarios().subscribe(res => {
+    this.api.getUsuarios().subscribe(res => {
       this.exampleData = res;
+      console.log(this.exampleData);
     });
   }
   displayFn(user?: Usuario): string | undefined {
@@ -56,15 +58,10 @@ export class PrimeiroAcessoComponent implements OnInit {
 
     return this.options.filter(option => option.nome.toLowerCase().indexOf(filterValue) === 0);
   }
-
-
   salvarRole() {
-    // debugger;
-    // console.log(this.form.value);
     let user = this.auth.userDetails;
     this.auth.spinner.show();
-    if(!this.form.valid)
-    {
+    if (!this.form.valid) {
       this.form.markAsDirty();
       this.auth.spinner.hide();
       console.error(this.form.errors);
@@ -77,6 +74,8 @@ export class PrimeiroAcessoComponent implements OnInit {
       sobrenome: this.form.get('sobrenome').value,
       cpf: this.form.get('cpf').value,
       uid: user.uid,
+      username: this.form.get('username').value
+      // pai
     };
 
 
@@ -98,8 +97,8 @@ export class PrimeiroAcessoComponent implements OnInit {
     //  this.firebase.upload(storageRef,  )
   }
   readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
-    var myReader:FileReader = new FileReader();
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
       this.imgTemporaria = myReader.result;

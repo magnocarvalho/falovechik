@@ -4,37 +4,36 @@
             <mat-card-header>
                 <mat-card-title>Insira sua informaçoes para concluir seu acesso</mat-card-title>
             </mat-card-header>
-            <form [formGroup]="form" fxLayout="column" fxLayoutAlign="space-around start">
+            <form [formGroup]="form" fxLayout="column" fxLayoutAlign="space-around stretch">
                 <div>
                     <img class="perfil" *ngIf="!imgTemporaria" src='assets/img/profile.png' />
                     <img class="perfil" [src]="imgTemporaria" *ngIf="imgTemporaria" />
                     <input type="file" (change)="upload($event)" accept=".png,.jpg">
                 </div>
-                <mat-form-field fxLayout="row" appearance="outline">
+                <mat-form-field class="largura-total" fxflex="100"  fxLayout="column" fxLayoutAlign="start stretch" appearance="outline">
                     <mat-label>Nome</mat-label>
                     <input matInput formControlName="nome" type="text" placeholder="Seu Nome">
                 </mat-form-field>
-                <mat-form-field fxLayout="row" appearance="outline">
+                <mat-form-field class="largura-total" fxflex="100"  fxLayout="column" fxLayoutAlign="start stretch"  appearance="outline">
                     <mat-label>Sobrenome</mat-label>
                     <input matInput formControlName="sobrenome" type="text" placeholder="Seu Sobrenome">
                 </mat-form-field>
-                <mat-form-field fxLayout="row" appearance="outline">
+                <mat-form-field class="largura-total" fxflex="100"  fxLayout="column" fxLayoutAlign="start stretch" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" type="text" placeholder="Seu Username">
+                </mat-form-field>
+                <mat-form-field class="largura-total" fxflex="100"  fxLayout="column" fxLayoutAlign="start stretch"  appearance="outline">
                     <mat-label>CPF</mat-label>
                     <input matInput formControlName="cpf" type="text" mask="000.000.000-00" placeholder="Seu CPF">
                 </mat-form-field>
-                <!-- <mat-form-field fxLayout="row" appearance="outline">
-                    <mat-label>FILIADO</mat-label>
-                    <input type="text" placeholder="Selecione afiliado" aria-label="Assignee" matInput formControlName="filiados" [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                            {{option.nome}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field> -->
+                <div>
+                    <select2 [data]="exampleData"></select2>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start stretch">
+                    <button mat-raised-button color="primary" (click)="salvarRole()">Salvar</button>
+                </div>
             </form>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="salvarRole()">Salvar</button>
-            </mat-card-actions>
+            
         </mat-card>
     </div>
 </div>
