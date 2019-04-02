@@ -5,11 +5,18 @@
                 <mat-card-title>Insira sua informaçoes para concluir seu acesso</mat-card-title>
             </mat-card-header>
             <form [formGroup]="form" fxLayout="column" fxLayoutAlign="space-around stretch">
-                <div>
+                <div fxLayout="row">
+                    <span>
                     <img class="perfil" *ngIf="!imgTemporaria" src='assets/img/profile.png' />
                     <img class="perfil" [src]="imgTemporaria" *ngIf="imgTemporaria" />
-                    <input type="file" (change)="upload($event)" accept=".png,.jpg">
+                </span>
+                <span>
+                    <button *ngIf="!imgTemporaria" type="button" mat-raised-button (click)="fileInput.click()">Escolha uma foto</button>
+                    <button *ngIf="imgTemporaria"  color="warn" (click)="deleteImgTemporaria($event)" mat-raised-button><mat-icon>delete</mat-icon></button>
+                    <input hidden  #fileInput type="file"  id="file" (change)="upload($event)" accept=".png,.jpg">
+                </span>
                 </div>
+              
                 <mat-form-field class="largura-total" fxflex="100"  fxLayout="column" fxLayoutAlign="start stretch" appearance="outline">
                     <mat-label>Nome</mat-label>
                     <input matInput formControlName="nome" type="text" placeholder="Seu Nome">
@@ -26,9 +33,15 @@
                     <mat-label>CPF</mat-label>
                     <input matInput formControlName="cpf" type="text" mask="000.000.000-00" placeholder="Seu CPF">
                 </mat-form-field>
-                <div>
+                <!-- <div>
                     <select2 [data]="exampleData"></select2>
-                </div>
+                </div> -->
+                <!-- <mat-form-field class="largura-total" fxflex="100"  fxLayout="column" fxLayoutAlign="start stretch"  appearance="outline">
+                    <mat-label>Selecione que indicou você!</mat-label>
+                    <mat-select required formControlName="pai">
+                        <mat-option *ngFor="let pais of exampleData" [value]="pais.id">{{pais.text}}</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
                 <div  fxLayout="column" fxLayoutAlign="start stretch">
                     <button mat-raised-button color="primary" (click)="salvarRole()">Salvar</button>
                 </div>

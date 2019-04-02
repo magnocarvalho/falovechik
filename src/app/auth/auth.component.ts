@@ -4,6 +4,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 // import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar } from '@angular/material';
+import { ApiService } from '../services/api.service';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +14,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(public auth: AuthService, public route: Router, private snackBar: MatSnackBar) { }
+  constructor(public auth: AuthService, public route: Router, private snackBar: MatSnackBar, public api: ApiService) { }
 
   ngOnInit() {
   }
@@ -27,9 +29,18 @@ export class AuthComponent implements OnInit {
       senha: this.form.get("senha").value
     };
     this.auth.login(obj).then(
-      () => {
+      res => {
+        this.api.login(obj.email).subscribe(retorno => {
+          // console.log(retorno);
+          
+          this.route.navigate(['dashboard']);
+        }, err =>
+        {
+          this.route.navigate(['primeiro-acesso']);
+        })
+
         //console.log("deu bom!!!");
-        this.route.navigate(["dashboard"]);
+
         // this.spinner.hide();
       },
       err => {

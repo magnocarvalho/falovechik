@@ -128,7 +128,8 @@ import { Select2Module } from 'ng2-select2';
     MatTreeModule,
     NgxSpinnerModule,
     NgxMaskModule.forRoot(),
-    Select2Module
+    Select2Module,
+    AngularFireStorageModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

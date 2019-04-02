@@ -2,14 +2,20 @@
     <div class="dashboard">
         <div class="header" fxLayout="column" fxLayoutAlign="center center">
             <div *ngIf="foto">
-                <figure *ngIf="(downloadURL | async); let url">
-                    <img class="perfil" [src]="url || 'assets/img/profile.png'" />
+                <figure>
+                    <img class="perfil" [src]="downloadURL || 'assets/img/profile.png'" />
                 </figure>
             </div>
 
             <div>
-                <h2 class="nome">{{ nome }}</h2>
+                <h2 class="nome">{{ nome }} &nbsp; {{sobrenome}}</h2>
             </div>
+            <div>
+                    <h2 class="nome">{{ email }}</h2>
+                </div>
+                <div>
+                        <h2 class="nome">{{ username }}</h2>
+                    </div>
         </div>
         <mat-divider></mat-divider>
         <div class="valores" fxLayout="row" fxLayoutAlign="center center">

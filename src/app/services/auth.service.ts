@@ -4,12 +4,15 @@ import { AngularFireAuth } from "angularfire2/auth";
 import * as firebase from "firebase/app";
 import { Observable } from "rxjs";
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ApiService } from './api.service';
+import { Usuario } from '../models/usuario.model';
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
   private user: Observable<firebase.User>;
+  public usuarioBD: Observable<Usuario>;
   public userDetails: firebase.User = null;
   private email;
   // private provider = new firebase.auth.FacebookAuthProvider();
@@ -19,7 +22,7 @@ export class AuthService {
     this.user.subscribe(user => {
       if (user) {
         this.userDetails = user;
-        console.log(this.userDetails);
+        // console.log(this.userDetails);
         // this.router.navigate(['dashboard']);
         this.spinner.hide();
         this.email = this.userDetails.email;
@@ -33,24 +36,37 @@ export class AuthService {
 
   }
   login(obj) {
+    this.spinner.show();
     return this._firebaseAuth.auth
       .signInWithEmailAndPassword(obj.email, obj.senha)
       .then(() => {
         //console.log("login com sucesso");
         // //console.log(this.userDetails);
+        this.spinner.hide();
       });
   }
+  
   createUser(user) {
+    this.spinner.show();
     return this._firebaseAuth.auth
       .createUserWithEmailAndPassword(user.email, user.senha)
       .then(() => {
         var user = this._firebaseAuth.auth.currentUser;
         user
           .sendEmailVerification()
-          .then(() => console.error("please verify your email"))
-          .catch(err => console.error(err));
+          .then(() => {
+            console.error("please verify your email");
+            this.spinner.hide();
+          })
+          .catch(err => {
+            console.error(err)
+            this.spinner.hide();
+          });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err)
+        this.spinner.hide();
+      });
   }
   isLoggedIn() {
     if (this.userDetails == null) {
@@ -85,12 +101,12 @@ export class AuthService {
   //     this.user = result.user;
   //   });
   // }
-  uploadFotoPerfil(obj)
-  {
-    return this._firebaseAuth.auth.currentUser.updateProfile({displayName: obj.nome, photoURL: obj.foto}).then(res => {
+  uploadFotoPerfil(obj) {
+    return this._firebaseAuth.auth.currentUser.updateProfile({ displayName: obj.nome, photoURL: obj.foto }).then(res => {
       console.log('foto atualizada');
     }).catch(() => {
       console.log(obj);
     })
   }
+
 }

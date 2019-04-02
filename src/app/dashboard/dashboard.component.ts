@@ -12,7 +12,10 @@ import { AngularFireStorage } from 'angularfire2/storage';
   styleUrls: ["./dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
-  public nome = this.auth.auth.currentUser.email;
+  public nome = this.auth.auth.currentUser.displayName;
+  public sobrenome = this.auth.auth.currentUser.displayName;
+  public email = this.auth.auth.currentUser.email;
+  public username = this.auth.auth.currentUser.displayName;
   public foto = true;
   public downloadURL;
   public imgTemporaria;
@@ -25,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     if (this.auth.auth.currentUser.photoURL) {
-      // this.downloadURL = this.afStorage.ref('assets/img/profile.png').getDownloadURL();
+     this.downloadURL = this.auth.auth.currentUser.photoURL;
     }
     else {
       this.foto = false;
