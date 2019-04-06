@@ -9,10 +9,10 @@ import { PrimeiroAcessoComponent } from './primeiro-acesso/primeiro-acesso.compo
 
 const routes: Routes = [
   { path: 'auth', component: AuthComponent },
-  { path: 'new-user', component: NovoUsuarioComponent},
+  { path: 'new-user', component: NovoUsuarioComponent,},
   { path: 'dashboard', component: DashboardComponent, canActivate:[UserlogadoGuard]},
   // { path: 'primeiro-acesso', component: PrimeiroAcessoComponent, canActivate:[UserlogadoGuard] },
-  { path: 'primeiro-acesso', component: PrimeiroAcessoComponent,},
+  { path: 'primeiro-acesso', component: PrimeiroAcessoComponent, canActivate:[UserlogadoGuard]},
 
   { path: '**', redirectTo: '/auth' },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }

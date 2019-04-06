@@ -43,9 +43,11 @@ export class AuthService {
         //console.log("login com sucesso");
         // //console.log(this.userDetails);
         this.spinner.hide();
+      }).catch(() => {
+        this.spinner.hide();
       });
   }
-  
+
   createUser(user) {
     this.spinner.show();
     return this._firebaseAuth.auth
